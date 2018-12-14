@@ -12,7 +12,10 @@ jobs:
           command: |
             # apk add --no-cache py-pip=9.0.0-r1
             apk update && apk add nodejs
-            npm install docker-compose
+            # npm install docker-compose
+            sudo curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            docker-compose --version
       - run:
           name: Run tests
           command: |
