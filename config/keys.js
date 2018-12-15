@@ -6,8 +6,8 @@ module.exports = {
             clientSecret: 'mL3XZFn1EEBvhi0bQv_W706s'
         },
         mongodb: {
-            dbURI: 'mongodb://test:test123@ds115870.mlab.com:15870/users'
-            // dbURI: 'mongodb://localhost/users'
+            // dbURI: 'mongodb://test:test123@ds115870.mlab.com:15870/users'
+            dbURI: 'mongodb://mongo:27017/users'
         },
         session: {
             cookieKey: 'thenetninjaisawesomeiguess'
