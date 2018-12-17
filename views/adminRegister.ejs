@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+</head>
+
+<body>
+    <% include Template/headerAdmin.ejs %><br><br><br>
+        <!-- <h1>
+            <%= title %>
+        </h1> -->
+        <div id="image">
+            <center>
+                <h2>Welcome to Admin Registration</h2>
+                <form action="/adminRegister/registerpage" method="POST">
+                    <br>&ensp;Username: <input type="text" name="username"><br>
+                    <br>&ensp;&nbsp;Password: <input type="password" name="password"><br>
+                    <br>&nbsp;First Name: <input type="text" name="firstname"><br>
+                    <br>&ensp;Last Name: <input type="text" name="lastname"><br>
+                    <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit"><br>
+                </form>
+            </center>
+        </div>
+</body>
+
+</html>

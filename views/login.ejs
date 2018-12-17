@@ -1,68 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Login</title>
-        <style>
-            body{
-                font-family: arial;
-                margin: 0;
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css' />
+    <script type="text/javascript">
+        // function refresh() {
+        //     if (!!window.performance && window.performance.navigation.type === 2) {
+        //         // value 2 means "The page was accessed by navigating into the history"
+        //         console.log('Reloading');
+        //         window.location.reload(); // reload whole page
+        //     }
+
+        // } 
+        
+        function refresh() {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                }
+                else
+                    localStorage.removeItem('firstLoad');
             }
-            nav{
-                background: #e4f318;
-                padding: 20px 10px;
-            }
-            nav ul{
-                max-width: 960px;
-                margin: 0 auto;
-                padding: 0;
-            }
-            nav li{
-                list-style-type: none;
-                display: inline-block;
-                margin: 0 10px 0 0;
-            }
-            nav a{
-                color: #fff;
-                font-size: 18px;
-                background: rgba(255,255,255,0.2);
-                text-decoration: none;
-                padding: 10px;
-                display: block;
-            }
-            main, header{
-                max-width: 960px;
-                margin: 30px auto;
-                padding: 0 10px;
-                color: #333;
-            }
-            .google-btn{
-                color: #fff;
-                text-decoration: none;
-                font-size: 18px;
-                padding: 10px;
-                background: #ff5353;
-            }
-        </style>
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <% if (user) { %>
-                <li><a href="/auth/logout">Log out</a></li>
-                <% } else { %>
-                <li><a href="/auth/login">Login G+</a></li>
-                <% } %>
-                <li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/loginpage">Simple Login</a></li>
-            </ul>
-        </nav>
-        <header>
-            <h1>Login using...</h1>
-        </header>
-        <main>
-            <a class="google-btn" href="/auth/google">Google+</a>
-        </main>
-    </body>
+        };
+    </script>
+</head>
+
+<body onload="refresh();">
+    <% include Template/header.ejs %>
+        <br>
+        <br>
+        <br>
+        <!-- <h1>
+            <%= title %>
+        </h1> -->
+        <div id="image">
+            <center>
+                <h2>Welcome to Login Page</h2>
+                <form action="/login/loginpage" method="POST">
+                    <br>Username: &ensp;&ensp;
+                    <input type="text" name="username">
+                    <br>
+                    <br>Password: &ensp;&ensp;
+                    <input type="password" name="password">
+                    <br>
+                    <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    <input type="submit">
+                    <br>
+                    <br>Still not Registered?
+                    <a href="/register">Click Here</a> to Register
+                </form>
+            </center>
+        </div>
+</body>
+
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+    <meta http-equiv="refresh" content="1;url=/login/profile" />
+    <script type="text/javascript">
+        function refresh() {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                }
+                else
+                    localStorage.removeItem('firstLoad');
+            }
+        };    
+    </script>
+</head>
+
+<body>
+        <%if (!userdetails) { %>
+            <% include Template/header.ejs %>
+        <% } %>
+        
+        <%if (userdetails) { %>
+            <% include Template/header1.ejs %>
+        <% } %>
+        <h1>
+            <%= title %>
+        </h1>
+        <div id="image">
+            <h3>Your Profile has been Updated</h3>
+        </div>
+</body>
+
+</html>

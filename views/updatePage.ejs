@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+    <script type="text/javascript">    
+        function refresh() {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                }
+                else
+                    localStorage.removeItem('firstLoad');
+            }
+        };
+    </script>
+</head>
+
+<body onload="refresh();">
+        <%if (!userdetails) { %>
+            <% include Template/header.ejs %>
+        <% } %>
+        
+        <%if (userdetails.role === "User") { %>
+            <% include Template/header.ejs %>
+        <% } %>
+
+        <%if (userdetails.role === "Admin") { %>
+            <% include Template/headerAdmin.ejs %>
+        <% } %><br>
+        <h1>
+            <%= title %><br><br>
+        </h1> 
+ 
+        <div class="container-fluid" id="image">
+            <div class="row">
+                <form action="/updates/updateProfiles" method="POST">
+                  <div class="col-md-4">
+                        <center>
+                            <select name="field" class="form-control form-control-lg">
+                                <option value="firstname" data-tokens="firstname">First Name</option>
+                                <option value="lastname" data-tokens="lastname">Lastname</option>
+                                <option value="password" data-tokens="password">Password</option>
+                            </select>
+                        </center>
+                  </div>
+                  <div class="col-md-4">
+                        <center>
+                                <input type="text" name="newvalue" class="form-control" id="inputdefault" value="Enter New Value">
+                        </center>
+                  </div>
+                  <div class="col-md-4">
+                        <center>
+                                <input type="submit" class="btn btn-primary btn-lg">
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

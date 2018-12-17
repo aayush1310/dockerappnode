@@ -1,71 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Homepage</title>
-        <style>
-            body{
-                font-family: arial;
-                margin: 0;
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='/stylesheets/style.css' />
+    <script type="text/javascript">
+        // function refresh() {
+        //     if (!!window.performance && window.performance.navigation.type === 2) {
+        //         // value 2 means "The page was accessed by navigating into the history"
+        //         console.log('Reloading');
+        //         window.location.reload(); // reload whole page
+        //     }
+
+        // }    
+
+        function refresh() {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                }
+                else
+                    localStorage.removeItem('firstLoad');
             }
-            nav{
-                background: #ff5353;
-                padding: 20px 10px;
-            }
-            nav ul{
-                max-width: 960px;
-                margin: 0 auto;
-                padding: 0;
-            }
-            nav li{
-                list-style-type: none;
-                display: inline-block;
-                margin: 0 10px 0 0;
-            }
-            nav a{
-                color: #fff;
-                font-size: 18px;
-                background: rgba(255,255,255,0.2);
-                text-decoration: none;
-                padding: 10px;
-                display: block;
-            }
-            main, header{
-                max-width: 960px;
-                margin: 30px auto;
-                padding: 0 10px;
-                color: #333;
-            }
-            main img{
-                width: 40px;
-                margin-right: 10px;
-                position: relative;
-                top: 12px;
-            }
-            main p{
-                display: inline-block;
-            }
-        </style>
-    </head>
-    <body>
-        <nav>
+        };
+    </script>
+    <style>
+        #profile {
+            margin-left: 40%;
+            margin-right: 30%;
+            margin-top: 10%;
+        }
+    </style>
+</head>
+
+<body onload="refresh();">
+
+    <%if (!userdetails) { %>
+        <% include Template/header.ejs %>
+    <% } %>
+    
+    <%if (userdetails.role === "User") { %>
+        <% include Template/header1.ejs %>
+    <% } %>
+    <%if (userdetails.role === "Admin") { %>
+        <% include Template/headerAdmin.ejs %>
+    <% } %>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="profile">
             <ul>
-                <% if (user) { %>
-                <li><a href="/auth/logout">Log out</a></li>
-                <% } else { %>
-                <li><a href="/auth/login">Login G+</a></li>
-                <% } %>
-                <li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/loginpage">Simple Login</a></li>
+                <li>
+                    <h2>
+                        Firstname:&ensp;&ensp;
+                        <%= userdetails.firstname %>
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        Lastname:&ensp;&ensp;
+                        <%= userdetails.lastname %>
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        Username:&ensp;&ensp;
+                        <%= userdetails.username %>
+                    </h2>
+                </li>
             </ul>
-        </nav>
-        <header>
-            <h1>Welcome to your profile, <%= user.username %></h1>
-        </header>
-        <main>
-            <img src="<%= user.thumbnail %>" />
-            <p>This is your profile thumbnail</p>
-        </main>
-    </body>
+            <br><h3><a href = "/updates"> Click Here</a> to Update your profile</h3>
+        </div>
+</body>
+
 </html>

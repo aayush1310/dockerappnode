@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+</head>
+
+<body>
+        <%if (!userdetails) { %>
+            <% include Template/header.ejs %>
+        <% } %>
+        
+        <%if (userdetails) { %>
+            <% include Template/header1.ejs %>
+        <% } %>
+        <h1>
+            <%= title %>
+        </h1>
+        <div id="image">
+            <img src="\images\tokyo.jpg" alt="Tokyo" width="1500" height="500">
+        </div>
+</body>
+
+</html>

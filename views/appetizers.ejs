@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel="stylesheet" href='/stylesheets/style.css'/>
+        <script type="text/javascript">
+            function refresh() {
+                if (!!window.performance && window.performance.navigation.type === 2) {
+                    // value 2 means "The page was accessed by navigating into the history"
+                    console.log('Reloading');
+                    window.location.reload(); // reload whole page
+                }
+    
+            }    
+        </script>
+    </head>
+    <body onload="refresh();">
+        <%if (!userdetails) { %>
+            <% include Template/header.ejs %>
+        <% } %>
+    
+        <%if (userdetails) { %>
+            <% include Template/header1.ejs %>
+        <% } %>
+        
+        <h1><%= jsondata.categoryName %></h1>
+        <h3>Id Is:<%= id %></h3>
+        <ul>
+            <% jsondata.categories.forEach(function(item){ %>
+                <li><a href = '/appetizers/<%= item.categoryID %>/<%= item.videosCount %>'><%= item.categoryName %></a></li>
+
+            <% }); %>
+        </ul>
+    </body>
+</html>

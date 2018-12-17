@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+    <script type="text/javascript">
+        function refresh() {
+            if (!!window.performance && window.performance.navigation.type === 2) {
+                // value 2 means "The page was accessed by navigating into the history"
+                console.log('Reloading');
+                window.location.reload(); // reload whole page
+            }
+
+        }    
+    </script>
+    <meta http-equiv="refresh" content="1;url=/login" />
+</head>
+
+<body onload="refresh();">
+        <% include Template/header.ejs %>
+        <h1>
+            <%= title %>
+        </h1>
+        <div id="image">
+            <center><h3>Logout Successful</h3></center>
+        </div>
+</body>
+
+</html>

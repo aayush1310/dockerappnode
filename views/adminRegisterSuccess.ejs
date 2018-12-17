@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href='\stylesheets\style.css'/>
+    <meta http-equiv="refresh" content="1;url=/" />
+</head>
+
+<body>
+        <%if (!userdetails) { %>
+            <% include Template/header.ejs %>
+        <% } %>
+        
+        <%if (userdetails) { %>
+            <% include Template/header1.ejs %>
+        <% } %>
+        <h1>
+            <%= title %>
+        </h1>
+        <div id="image">
+            <center>
+                <h3><%=userdetails.firstname%> is Successfully Added</h3><br><br>
+                <h3>Redirecting in 2 Seconds.....</h3>
+            </center>
+        </div>
+</body>
+
+</html>
